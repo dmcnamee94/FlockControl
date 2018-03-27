@@ -1,0 +1,112 @@
+﻿@model project.Models.usertable
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Details</h2>
+
+<div>
+    <h4 style="text-align:center">See Employee details below</h4>
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.firstname)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.firstname)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.secondname)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.secondname)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.DOB)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.DOB)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Address)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Address)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Postcode)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Postcode)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Telephone)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Email)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Email)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Username)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Username)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Password)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Password)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Role)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Role)
+        </div>
+
+    </form>
+</div>
+<p style="text-align:center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.userid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<project.Models.mealproduct>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">My Meal Records</h2>
+
+<a href="@Url.Action("Create", "Meal")">
+    <h4 style="text-align:center" class="text-success">Add New Meal Product Record </h4>
+</a>
+
+<table class="table" style="text-align:center">
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.DateofPurchase)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.BagSize)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.MealSupplier)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateofPurchase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BagSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MealSupplier)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MealID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MealID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MealID })
+        </td>
+    </tr>
+}
+
+</table>

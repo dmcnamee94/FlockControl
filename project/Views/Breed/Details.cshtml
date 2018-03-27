@@ -1,0 +1,49 @@
+﻿@model project.Models.breed
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Details</h2>
+
+<div>
+    <h4 style="text-align:center">See Breed details below</h4>
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Breed1)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Breed1)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Colour)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Colour)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Description)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Description)
+        </div>
+
+    </form>
+</div>
+<p style="text-align:center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BreedID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

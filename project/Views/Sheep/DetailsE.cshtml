@@ -1,0 +1,75 @@
+﻿@model project.Models.sheep
+
+@{
+    ViewBag.Title = "DetailsE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Details</h2>
+
+<div>
+    <h4 style="text-align:center">See Sheep details below</h4>
+    <hr />
+    <div class="container">
+        <form class="form-horizontal" style="text-align:center">
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.sheeptag)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.sheeptag)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.DOB)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.DOB)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.Breed)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.Breed)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.detail)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.detail)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.sex)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.sex)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.yearadded)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.yearadded)
+            </div>
+            <br />
+        </form>
+    </div>
+</div>
+<p style="text-align:center">
+    @Html.ActionLink("Edit", "EditE", new { id = Model.SheepID }) |
+    @Html.ActionLink("Back to List", "EmployeeIndex")
+</p>

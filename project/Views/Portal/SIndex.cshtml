@@ -1,0 +1,10 @@
+﻿@{
+    var chart = new Chart(width: 450, height: 450, theme: ChartTheme.Vanilla)
+.AddTitle("Number of Sheep Breeds")
+.AddSeries("Default", chartType: "Pie",
+    xValue: Model, xField: "Breed",
+    yValues: Model, yFields: "TotalSheep")
+.Write(format: "png");
+}
+
+

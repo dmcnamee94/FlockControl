@@ -1,0 +1,15 @@
+﻿
+@{
+    var chart = new Chart(width: 450, height: 450, theme: ChartTheme.Vanilla)
+.AddTitle("Percentage of sheep that was bought/bred each year")
+.AddSeries("Bred",
+chartType: "Column",
+    xValue: Model, xField: "yearadded",
+    yValues: Model, yFields: "detail" ).AddLegend("Details")
+    .AddSeries("Bought",
+chartType: "Column", 
+    xValue: Model, xField: "yearadded",
+    yValues: Model, yFields: "sheepdetail")
+.Write(format: "png");
+}
+

@@ -1,0 +1,67 @@
+﻿@model project.Models.lamb
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Details</h2>
+
+<div>
+    <h4 style="text-align:center">See Lamb details below</h4>
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.TagNo)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.TagNo)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.DOB)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.DOB)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Breed)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Breed)
+        </div>
+      
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.ResultDes)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.ResultDes)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.FinishWeight)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.FinishWeight)
+        </div>
+        <br />
+    </form>
+</div>
+<p style="text-align:center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LambID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

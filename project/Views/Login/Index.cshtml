@@ -1,0 +1,75 @@
+﻿@model project.Models.usertable
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+
+
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+        <style>
+            #login-div {
+                position: absolute;
+                left: 40%;
+                top: 40%;
+                border: 1px solid #eeeeee;
+                padding: 10px 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="background-image:url(../../img/background.jpg)">
+            <div id="login-div">
+                @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+            {
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td style="text-decoration:underline">Flock Control</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.Username)
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.Username)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })</td>
+                        </tr>
+                        <tr>
+                            <td> @Html.LabelFor(model => model.Password)</td>
+                            <td> @Html.EditorFor(model => model.Password)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                            </td>
+                            <td>@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })</td>
+                            <td></td>
+                            <td>
+                                <input type="submit" name="name" value="Login" />
+                            </td>
+                        </tr>
+
+                    </table>
+                }
+            </div>
+        </div>
+    </body>
+
+</html>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

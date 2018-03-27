@@ -1,0 +1,10 @@
+﻿
+
+@{
+    var chart = new Chart(width: 450, height: 450, theme: ChartTheme.Vanilla)
+.AddTitle("Number of Lambs born each year")
+.AddSeries("Default", chartType: "Line",
+    xValue: Model, xField: "Year",
+    yValues: Model, yFields: "TotalLambs")
+.Write(format: "png");
+}

@@ -1,0 +1,36 @@
+﻿@model project.Models.medication
+
+@{
+    ViewBag.Title = "Emenu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+
+<h2 style="text-align:center">Medical Records Menu</h2>
+
+<h4 style="text-align:center">Select sheep or lambs to add or view medical records</h4>
+
+<div class="row">
+    <center>
+        <div class="col-md-6">
+            <br />
+            <a href="@Url.Action("EIndex", "Medication")">
+                <img src="~/img/sheeppic.jpg" style="background-color:#cccccc">
+                <h4 style="text-align:center" class="text-success">Sheep  </h4>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <br />
+            <a href="@Url.Action("EIndex", "LambMed")">
+                <img src="~/img/Lambs-pic.jpg" style="background-color:#cccccc"><br />
+                <h4 style="text-align:center" class="text-success">Lambs </h4>
+            </a>
+        </div>
+
+    </center>
+</div>

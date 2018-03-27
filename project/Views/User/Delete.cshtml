@@ -1,0 +1,109 @@
+﻿@model project.Models.usertable
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Delete</h2>
+
+<h3 style="text-align:center">Are you sure you want to delete this?</h3>
+<div>
+
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.firstname)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.firstname)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.secondname)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.secondname)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.DOB)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.DOB)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Address)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Address)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Postcode)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Postcode)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Telephone)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Email)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Email)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Username)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Username)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Role)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Role)
+        </div>
+
+    </form>
+
+    @using (Html.BeginForm()) {
+       // @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

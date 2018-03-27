@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron" >
+    <h3 style="text-align:center" class="text-success"> <br />  <br /> <br /> <br /> <br /> <br /><br /> Welcome to Flock Control   </h3>
+    <h4 style="text-align:center" class="text-success">Sheep Management Software  </h4>
+    <center>
+        <p><a class="btn btn-primary btn-lg round" onclick=@Html.ActionLink("Log in", "Index", "Login") </a> </p>
+    </center>
+</div>
+
+<div class="row">
+    <center>
+        <div class="col-md-4">
+
+            <h2 style="text-align:center">About Flock Control</h2>
+            <p style="text-align:center">
+                Flock Control aims to give farmers the opportunity to make the most of their farms, while keeping office work to a minimun and animal welfare a top prority.
+                Check out what Flock Control can do for your farm.
+            </p>
+            <p><a class="btn btn-primary btn-lg round" onclick=@Html.ActionLink("Learn more", "About", "Home")</a></p>
+        </div>
+    </center>
+    <center>
+        <div class="col-md-4">
+            <h2 style="text-align:center">Sign up now</h2>
+            <p style="text-align:center">
+                Follow the link below to sign up now
+            </p>
+            <p><a class="btn btn-primary btn-lg round" onclick=@Html.ActionLink("Register", "Create", "Login")</a></p>
+        </div>
+    </center>
+    <center>
+        <div class="col-md-4">
+            <h2 style="text-align:center">Contact Us</h2>
+            <p style="text-align:center">If you have any questions about the Flock Control and want to talk to a professional please contact us following the link below. </p>
+            <p> <a class="btn btn-primary btn-lg round" onclick=@Html.ActionLink("Ask a Professional", "Contact", "Home")</a></p>
+        </div>
+    </center>
+
+</div>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<project.Models.breed>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">My Breeds</h2>
+
+<a href="@Url.Action("Create", "Breed")">
+    <h4 style="text-align:center" class="text-success">Add New Breed </h4>
+</a>
+
+<table class="table" style="text-align:center">
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Breed1)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Colour)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Breed1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Colour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BreedID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BreedID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BreedID })
+        </td>
+    </tr>
+}
+
+</table>

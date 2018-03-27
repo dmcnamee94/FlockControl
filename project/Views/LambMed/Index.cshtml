@@ -1,0 +1,92 @@
+﻿@model IEnumerable<project.Models.lambmed>
+
+@{
+    ViewBag.Title = "Index";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Lamb Medical Records</h2>
+
+
+    <a href="@Url.Action("Create", "LambMed")">
+        <h4 style="text-align:center" class="text-success">Create New Record </h4>
+    </a>
+
+
+<div style="text-align:center">
+    @using (Html.BeginForm("Index", "LambMed", FormMethod.Get))
+    {
+        <b style="text-align:center">Searchy By:</b>@Html.RadioButton("searchBy", "TagNo")<text>TagNo</text>
+        @Html.RadioButton("searchBy", "Issue")<text>Issue</text>
+        @Html.RadioButton("searchBy", "Name", true)<text>Drug Given</text><br />
+        <form>
+            Search: <input type="text" name="search" id="search" required />
+            <br /><br />
+            <input type="submit" value="Search" />
+        </form>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TagNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Issue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dosage)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="3">
+                No rows match search criteria
+
+            </td>
+        </tr>
+    }
+
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TagNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Issue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dosage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MedID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MedID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MedID })
+        </td>
+         </tr>
+
+        }
+    }
+
+</table>

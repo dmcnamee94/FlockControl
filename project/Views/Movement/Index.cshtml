@@ -1,0 +1,51 @@
+﻿@model IEnumerable<project.Models.movement>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Movements</h2>
+
+<a href="@Url.Action("Create", "Movement")">
+    <h4 style="text-align:center" class="text-success">Add New Movement Record </h4>
+</a>
+<table class="table" style="text-align:center">
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.RefNo)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+       
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+      
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.RefNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MovementID}) |
+            @Html.ActionLink("Details", "Details", new { id=item.MovementID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MovementID })
+        </td>
+    </tr>
+}
+
+</table>

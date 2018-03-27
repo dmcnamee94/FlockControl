@@ -1,0 +1,88 @@
+﻿@model IEnumerable<project.Models.lamb>
+
+@{
+    ViewBag.Title = "EIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Lambs</h2>
+
+
+<a href="@Url.Action("ECreate", "Lamb")">
+    <h4 style="text-align:center" class="text-success">Add New Lamb </h4>
+</a>
+
+<div style="text-align:center">
+    @using (Html.BeginForm("EIndex", "Lamb", FormMethod.Get))
+    {
+        <b style="text-align:center">Searchy By:</b>@Html.RadioButton("searchBy", "TagNo")<text>TagNo</text>
+        @Html.RadioButton("searchBy", "sheeptag")<text>Mother Ewe</text>
+        @Html.RadioButton("searchBy", "Breed", true)<text>Breed</text><br />
+        <form>
+            Search: <input type="text" name="search" id="search" required />
+            <br /><br />
+
+            <input type="submit" value="Search" />
+        </form>
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TagNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Breed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sheeptag)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="3">
+                No rows match search criteria
+
+            </td>
+        </tr>
+    }
+
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TagNo)
+                </td>
+                <td>
+                    @Html.Encode(item.DOB.ToShortDateString())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sheeptag)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "EEdit", new { id = item.LambID }) |
+                    @Html.ActionLink("Details", "EDetails", new { id = item.LambID }) |
+                  
+                </td>
+            </tr>
+        }
+    }
+
+</table>

@@ -1,0 +1,158 @@
+﻿@model project.Models.drug
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Edit Drug Record</h2>
+
+@using (Html.BeginForm())
+{
+    // @Html.AntiForgeryToken()
+
+    <div class="container">
+        <form class="form-horizontal">
+            <h4 style="text-align:center">Update details below</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.DrugID)
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Name)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.PurchaseDate)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Price)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.DrugSupplier)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.DrugSupplier, new SelectList(Model.DrugSupplierCollection, "SupplierName", "SupplierName"), "Select", new { style = "width:280px; height:30px;" })
+                    @Html.ValidationMessageFor(model => model.DrugSupplier, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Withdrawalperiod)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.Withdrawalperiod, new List<SelectListItem>
+           {
+               new SelectListItem {Text = "1 Week", Value = "1 Week" },
+               new SelectListItem {Text = "2 Weeks", Value = "2 Weeks" },
+               new SelectListItem {Text = "5 days", Value = "5 days" },
+               new SelectListItem {Text = "3 days", Value = "3 days" },
+               new SelectListItem {Text = "Other", Value = "Other" }
+
+           }, "Select", new { style = "width:280px; height:30px;" })
+                    @Html.ValidationMessageFor(model => model.Withdrawalperiod, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Dateofdisposal)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Dateofdisposal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Dateofdisposal, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.BottleSize)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.BottleSize, new List<SelectListItem>
+           {
+               new SelectListItem {Text = "50ml", Value = "50" },
+               new SelectListItem {Text = "100ml", Value = "100" },
+               new SelectListItem {Text = "200ml", Value = "200" },
+               new SelectListItem {Text = "500ml", Value = "500" },
+               new SelectListItem {Text = "1L", Value = "1000" }
+
+           }, "Select", new { style = "width:280px; height:30px;" })
+
+                    @Html.ValidationMessageFor(model => model.BottleSize, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.IsDisposedOf)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.IsDisposedOf, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsDisposedOf, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-4">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

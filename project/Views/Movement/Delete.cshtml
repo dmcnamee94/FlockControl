@@ -1,0 +1,72 @@
+﻿@model project.Models.movement
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+
+<h2 style="text-align:center">Delete</h2>
+
+<h3 style="text-align:center">Are you sure you want to delete this?</h3>
+<div>
+
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.RefNo)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.RefNo)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Date)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Date)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Description)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Description)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Eventcode)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Eventcode)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.NoAnimals)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.NoAnimals)
+        </div>
+        <br />
+    </form>
+
+    @using (Html.BeginForm()) {
+        //@Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

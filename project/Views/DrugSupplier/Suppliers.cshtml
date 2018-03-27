@@ -1,0 +1,37 @@
+﻿@model project.Models.drugsupplier
+
+@{
+    ViewBag.Title = "Suppliers";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+}
+
+<h2 style="text-align:center">My Contacts</h2>
+
+<div class="row">
+    <center>
+        <div class="col-md-12">
+            <br />
+            <a href="@Url.Action("Index", "DrugSupplier")">
+                <img src="~/img/medication2.jpg" style="background-color:#cccccc">
+                <h4 style="text-align:center" class="text-success">Medication Suppliers  </h4>
+            </a>
+        </div>
+        
+        <div class="col-md-12">
+            <br />
+            <a href="@Url.Action("Index", "MealSupplier")">
+                <img src="~/img/feed1.jpg" style="background-color:#cccccc"><br />
+                <h4 style="text-align:center" class="text-success">Feed Suppliers </h4>
+            </a>
+        </div>
+       
+        <div class="col-md-12">
+            <br />
+            <a href="@Url.Action("Index", "User")">
+                <img src="~/img/employee2.jpg" style="background-color:#cccccc"><br />
+                <h4 style="text-align:center" class="text-success">My Employees </h4>
+            </a>
+        </div>
+    </center>
+</div>
+

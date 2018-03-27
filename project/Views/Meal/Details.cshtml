@@ -1,0 +1,68 @@
+﻿@model project.Models.mealproduct
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Details</h2>
+
+<div>
+    <h4 style="text-align:center">See Meal record details below</h4>
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Name)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.DateofPurchase)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.DateofPurchase)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Price)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Price)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Description)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Description)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.MealSupplier)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.MealSupplier)
+        </div>
+        <br />
+
+    </form>
+</div>
+<p style="text-align:center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MealID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

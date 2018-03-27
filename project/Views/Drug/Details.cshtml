@@ -1,0 +1,91 @@
+﻿@model project.Models.drug
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Details</h2>
+
+<div>
+    <h4 style="text-align:center">See Drug record details below</h4>
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Name)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.PurchaseDate)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Price)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Price)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.DrugSupplier)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.DrugSupplier)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Withdrawalperiod)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Withdrawalperiod)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Dateofdisposal)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Dateofdisposal)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.BottleSize)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.BottleSize)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.IsDisposedOf)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.IsDisposedOf)
+        </div>
+        <br />
+    </form>
+</div>
+<p style="text-align:center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DrugID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

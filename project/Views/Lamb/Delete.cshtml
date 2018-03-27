@@ -1,0 +1,72 @@
+﻿@model project.Models.lamb
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Delete Lamb Record</h2>
+
+<h3 style="text-align:center">Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.TagNo)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.TagNo)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.DOB)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.DOB)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Breed)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Breed)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.ResultDes)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.ResultDes)
+        </div>
+
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.FinishWeight)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.FinishWeight)
+        </div>
+        <br />
+    </form>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

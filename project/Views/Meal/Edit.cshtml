@@ -1,0 +1,120 @@
+﻿@model project.Models.mealproduct
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Edit Meal Record</h2>
+
+@using (Html.BeginForm())
+{
+    //@Html.AntiForgeryToken()
+    <div class="container">
+    <form class="form-horizontal">
+        <h4 style="text-align:center">Update details below</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MealID)
+
+        <div class="form-group">
+            <h4>
+                <label class="control-label col-md-4">
+                   @Html.LabelFor(model => model.Name)
+                </label >
+            </h4 >
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <br /><br />
+        </div>
+        <div class="form-group">
+            <h4>
+                <label class="control-label col-md-4">
+                    @Html.LabelFor(model => model.DateofPurchase)
+                </label>
+            </h4>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.DateofPurchase, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateofPurchase, "", new { @class = "text-danger" })
+            </div>
+            <br /><br />
+        </div>
+        <div class="form-group">
+            <h4>
+                <label class="control-label col-md-4">
+                    @Html.LabelFor(model => model.Price)
+                </label>
+            </h4>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            <h4>
+                <label class="control-label col-md-4">
+                    @Html.LabelFor(model => model.BagSize)
+                </label>
+            </h4>
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.BagSize, new List<SelectListItem>
+           {
+               new SelectListItem {Text = "25KG", Value = "25KG" },
+               new SelectListItem {Text = "50KG", Value = "50KG" },
+               new SelectListItem {Text = "100KG", Value = "100KG" },
+               new SelectListItem {Text = "1/2 Tonne", Value = "1/2 Tonne" },
+               new SelectListItem {Text = "1 Tonne", Value = "1 Tonne" }
+
+           }, new { style = "width:280px; height:30px;" })
+                @Html.ValidationMessageFor(model => model.BagSize, "", new { @class = "text-danger" })
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            <h4>
+                <label class="control-label col-md-4">
+                    @Html.LabelFor(model => model.Description)
+                </label>
+            </h4>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            <h4>
+                <label class="control-label col-md-4">
+                    @Html.LabelFor(model => model.MealSupplier)
+                </label>
+            </h4>
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.MealSupplier, new SelectList(Model.SupplierCollection, "SupplierName", "SupplierName"), "Select", new { style = "width:280px; height:30px;" })
+                @Html.ValidationMessageFor(model => model.MealSupplier, "", new { @class = "text-danger" })
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-4">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </form>
+ </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<project.Models.sheep>
+
+@{
+    ViewBag.Title = "Index";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+<h2 style="text-align:center">Your Sheep</h2>
+
+<a href="@Url.Action("Create", "Sheep")">
+    <h4 style="text-align:center" class="text-success">Add New Sheep </h4>
+</a>
+
+
+<div style="text-align:center">
+    @using (Html.BeginForm("Index", "Sheep", FormMethod.Get))
+    {
+    <b style="text-align:center">Searchy By:</b>@Html.RadioButton("searchBy", "TagNo")  <text>TagNo</text>
+    @Html.RadioButton("searchBy", "Breed", true)<text>Breed</text><br/>
+    <form>
+        Search: <input type="text" name="search" id="search" required />
+        <br/><br/>
+        
+        <input type="submit" value="Search" />
+    </form>
+    }
+</div>
+
+<table style="text-align:center" class="table" >
+    <thead>
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.sheeptag)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Breed)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="3" > No rows match search criteria
+
+            </td>
+        </tr>
+    }
+
+    else
+    {
+
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sheeptag)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+               
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SheepID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SheepID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SheepID })
+                </td>
+            </tr>
+        }
+    }
+
+
+
+</table>
+
+
+

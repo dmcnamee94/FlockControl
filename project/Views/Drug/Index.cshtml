@@ -1,0 +1,60 @@
+﻿@model IEnumerable<project.Models.drug>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">My Drug Records</h2>
+
+<a href="@Url.Action("Create", "Drug")">
+    <h4 style="text-align:center" class="text-success">Add New Medication Product </h4>
+</a>
+<table class="table" style="text-align:center">
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.DrugSupplier)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseDate)
+        </td>
+        <td>
+            
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DrugSupplier)
+        </td>
+       
+            <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DrugID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DrugID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DrugID })
+        </td>
+    </tr>
+}
+
+</table>

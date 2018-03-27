@@ -1,0 +1,26 @@
+﻿@model project.Models.usertable
+
+@{
+    ViewBag.Title = "Index";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+
+}
+
+<h2>Portal</h2>
+
+
+
+<div>
+    <h3>Welcome @Session["userName"].ToString() to the Employee Portal</h3>
+
+
+</div>
+
+
+
+<a href="@Url.Action("LogOut", "Login")">LogOut</a>
+

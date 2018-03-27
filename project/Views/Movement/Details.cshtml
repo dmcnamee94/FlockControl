@@ -1,0 +1,66 @@
+﻿@model project.Models.movement
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Details</h2>
+
+<div>
+    <h4 style="text-align:center">See details below</h4>
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.RefNo)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.RefNo)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Date)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Date)
+        </div>
+        <h5>
+            <label> 
+                @Html.DisplayNameFor(model => model.Description)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Description)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Eventcode)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Eventcode)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.NoAnimals)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.NoAnimals)
+        </div>
+      
+
+    </form>
+</div>
+<p style="text-align:center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MovementID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,65 @@
+﻿@model project.Models.medication
+
+@{
+    ViewBag.Title = "Details";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Details</h2>
+
+<div>
+    <h4 style="text-align:center">See details of medical issue below</h4>
+    <hr />
+    <form class="form-horizontal" style="text-align:center">
+       
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.sheeptag)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.sheeptag)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Date)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Date)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Name)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Issue)
+            </label>
+        </h5>
+        <div>
+             @Html.DisplayFor(model => model.Issue)
+        </div>
+       
+        <h5>
+            <label>
+                @Html.DisplayNameFor(model => model.Dosage)
+            </label>
+        </h5>
+        <div>
+            @Html.DisplayFor(model => model.Dosage)
+        </div>
+        <br />
+    </form>
+</div>
+<p style="text-align:center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MedicationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

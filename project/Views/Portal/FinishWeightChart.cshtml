@@ -1,0 +1,8 @@
+﻿@{
+    var chart = new Chart(width: 600, height: 600, theme: ChartTheme.Vanilla)
+.AddTitle("Average Finish Weight Each Year")
+.AddSeries("Finish Weight", chartType: "Column",
+    xValue: Model, xField: "Year",
+    yValues: Model, yFields: "Weight").AddLegend("Details")
+.Write(format: "png");
+}

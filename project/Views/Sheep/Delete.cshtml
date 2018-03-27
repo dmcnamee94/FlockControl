@@ -1,0 +1,79 @@
+﻿@model project.Models.sheep
+
+@{
+    ViewBag.Title = "Delete";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">Delete Sheep Record</h2>
+
+<h3 style="text-align:center">Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <div class="container">
+        <form class="form-horizontal" style="text-align:center">
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.sheeptag)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.sheeptag)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.DOB)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.DOB)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.Breed)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.Breed)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.detail)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.detail)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.sex)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.sex)
+            </div>
+            <h5>
+                <label>
+                    @Html.DisplayNameFor(model => model.yearadded)
+                </label>
+            </h5>
+            <div>
+                @Html.DisplayFor(model => model.yearadded)
+            </div>
+            <br />
+        </form>
+    </div>
+
+    @using (Html.BeginForm()) {
+        //@Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

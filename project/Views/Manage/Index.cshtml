@@ -1,0 +1,28 @@
+﻿@model IEnumerable<project.Models.usertable>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<h2 style="text-align:center">My Account</h2>
+
+<div>
+    <h4 style="text-align:center">Username: @Session["userName"].ToString() </h4>
+    <h4 style="text-align:center">FirstName: @Session["firstname"].ToString() </h4>
+    <h4 style="text-align:center">SecondName: @Session["secondname"].ToString() </h4>
+    <h4 style="text-align:center">DateOfBirth: @Session["DOB"].ToString() </h4>
+    <h4 style="text-align:center">Address: @Session["Address"].ToString() </h4>
+    <h4 style="text-align:center">Postcode: @Session["Postcode"].ToString() </h4>
+    <h4 style="text-align:center">Telephone: @Session["Telephone"].ToString() </h4>
+    <h4 style="text-align:center">Email: @Session["Email"].ToString() </h4>
+
+  
+</div>
+
+@Html.ActionLink("Edit", "Edit", new { id = Session.SessionID })
