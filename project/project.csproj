@@ -265,7 +265,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dhtmlxScheduler\dhtmlxscheduler-responsive-classic.css" />
     <Content Include="Content\dhtmlxScheduler\dhtmlxscheduler-responsive.css" />
     <Content Include="Content\themes\base\accordion.css" />
