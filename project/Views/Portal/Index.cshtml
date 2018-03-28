@@ -47,14 +47,7 @@
     <a class="btn btn-primary btn-lg round" onclick=@Html.ActionLink("Update/Delete A Calendar Entry", "Index", "CalEvent")</a>
     </p>
 
-@RenderChart()
 
-@helper RenderChart()
-    {
-    <div class="col-md-6 quad" style="background-color:white;">
-        <img src='@Url.Action("LIndex")' style="background-color:#cccccc" />
-    </div>
-}
 <div class="line">
     <div class="col-md-6 quad" style="background-color:white;">
         <img src='@Url.Action("SIndex")' style="background-color:#cccccc" />
