@@ -1,16 +1,10 @@
 ﻿@{
-    var filePathName = "img/chart01.jpg";
-    if (!File.Exists(Server.MapPath(filePathName)))
-    {
-        var chart = new Chart(width: 450, height: 450, theme: ChartTheme.Vanilla)
+    var chart = new Chart(width: 450, height: 450, theme: ChartTheme.Vanilla)
 .AddTitle("Number of Sheep Breeds")
 .AddSeries("Default", chartType: "Pie",
-   xValue: Model, xField: "Breed",
-   yValues: Model, yFields: "TotalSheep");
-        chart.Save(Path: filePathName);
-    }
-
-
+    xValue: Model, xField: "Breed",
+    yValues: Model, yFields: "TotalSheep")
+.Write(format: "png");
 }
 
 
