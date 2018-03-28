@@ -563,7 +563,6 @@
     <Content Include="Views\LambMed\EEdit.cshtml" />
     <Content Include="Views\Manage\EIndex.cshtml" />
     <Content Include="Views\Manage\EEdit.cshtml" />
-    <Content Include="Views\Portal\SIndex.cshtml" />
     <Content Include="Views\Portal\LIndex.cshtml" />
     <Content Include="Views\Shared\loginlayout.cshtml" />
     <Content Include="Views\Portal\SheepChart.cshtml" />
@@ -573,6 +572,7 @@
     <Content Include="Views\CalEvent\Index.cshtml" />
     <Content Include="Views\CalEvent\Edit.cshtml" />
     <Content Include="Views\CalEvent\Delete.cshtml" />
+    <Content Include="Views\Portal\SIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
