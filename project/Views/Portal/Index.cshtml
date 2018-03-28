@@ -2,7 +2,7 @@
 
     @{
         ViewBag.Title = "Index";
-        Layout = "~/Views/Shared/loginlayout.cshtml";
+        Layout = "~/Views/Shared/_LayoutPortal.cshtml";
         if (Session["userID"] == null)
         {
             Response.Redirect("~/Login/Index");
