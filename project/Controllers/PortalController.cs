@@ -10,6 +10,8 @@ using System.Configuration;
 using project.Models;
 using project;
 using System.Web.Helpers;
+using System.Web.Script.Services;
+using System.Web.Services;
 
 namespace project.Controllers
 {
@@ -278,6 +280,9 @@ namespace project.Controllers
             return new JsonResult { Data = new { status = status } };
         }
 
+
       
+
+
     }
 }
