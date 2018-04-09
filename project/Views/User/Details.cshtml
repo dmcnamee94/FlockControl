@@ -12,100 +12,123 @@
 
 <h2 style="text-align:center">Details</h2>
 
-<div>
-    <h4 style="text-align:center">See Employee details below</h4>
-    <hr />
-    <form class="form-horizontal" style="text-align:center">
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.firstname)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.firstname)
-        </div>
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.secondname)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.secondname)
-        </div>
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.DOB)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.DOB)
-        </div>
+@using (Html.BeginForm())
+{
+    //@Html.AntiForgeryToken()
+    <div class="container">
+        <form class="form-horizontal">
+            <h4 style="text-align:center">See Employee details below</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.firstname)
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.firstname, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.secondname)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.secondname, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
 
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Address)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Address)
-        </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.DOB)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
 
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Postcode)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Postcode)
-        </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Address)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
 
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Telephone)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Telephone)
-        </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Postcode)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Postcode, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
 
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Email)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Email)
-        </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Telephone)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
 
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Username)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Username)
-        </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Email)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
 
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Password)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Password)
-        </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Username)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
 
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Role)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Role)
-        </div>
-
-    </form>
-</div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Role)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
+        </form>
+    </div>
+}
 <p style="text-align:center">
     @Html.ActionLink("Edit", "Edit", new { id = Model.userid }) |
     @Html.ActionLink("Back to List", "Index")

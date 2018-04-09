@@ -1,9 +1,8 @@
-﻿
-
-@{
+﻿@{
     var chart = new Chart(width: 450, height: 450, theme: ChartTheme.Vanilla)
-.AddSeries("Default", chartType: "Line",
+.AddSeries("Number of Lambs", chartType: "Bar",
     xValue: Model, xField: "Year",
-    yValues: Model, yFields: "TotalLambs")
+    yValues: Model, yFields: "Issue").AddLegend("Details")
 .Write(format: "png");
 }
+

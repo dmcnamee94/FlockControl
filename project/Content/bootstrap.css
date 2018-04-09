@@ -329,6 +329,18 @@ body {
     background-color: #cccccc;
 }
 
+
+
+bg
+{
+    border: 2px solid black;
+    padding: 25px;
+    background: url(../../img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+   
+}
+
 input,
 button,
 select,
@@ -483,12 +495,20 @@ h6,
 .h3,
 .h4,
 .h5,
-.h6 {
+.h6
+{
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   line-height: 1.1;
 }
-
+h8,
+.h8
+{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  line-height: 1.1;
+ 
+}
 h1 small,
 h2 small,
 h3 small,
@@ -548,6 +568,11 @@ h5,
 h6,
 .h6 {
   font-size: 12px;
+}
+
+h8,
+.h8 {
+  font-size: 18px;
 }
 
 h1 small,

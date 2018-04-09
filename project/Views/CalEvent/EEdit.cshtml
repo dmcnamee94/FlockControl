@@ -1,23 +1,19 @@
 ﻿@model project.Models.calevent
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
-
-    if (Session["userID"] == null)
-    {
-        Response.Redirect("~/Home/Index");
-    }
+    ViewBag.Title = "EEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="text-align:center">New Calendar Event</h2>
+<h2 style="text-align:center">Edit Calendar Event</h2>
 
 @using (Html.BeginForm())
 {
     //@Html.AntiForgeryToken()
+
     <div class="container">
         <form class="form-horizontal">
-            <h4 style="text-align:center" class="text-success">Enter Details</h4>
+            <h4 style="text-align:center" class="text-success">Update Details</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -95,7 +91,7 @@
                 </div>
             </div>
             <br /><br />
-
+            @Html.HiddenFor(model => model.EventID)
 
             <div class="form-group">
                 <div class="col-md-offset-5 col-md-4">
@@ -108,8 +104,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Calendar", "Index", "Portal")
+    @Html.ActionLink("Back to List", "EIndex")
 </div>
-
-
-

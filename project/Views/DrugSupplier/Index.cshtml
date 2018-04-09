@@ -39,7 +39,10 @@
             @Html.ActionLink("Details", "Details", new { id=item.SupplierID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.SupplierID })
         </td>
+
     </tr>
 }
+  
 
 </table>
+<p style="text-align:right"><a class="btn btn-primary btn-lg round" onclick=@Html.ActionLink("Back","Suppliers", "DrugSupplier")</a></p>

@@ -224,6 +224,43 @@ namespace project.Controllers
 
         }
 
+        public ActionResult LambMedIssue()
+        {
+            string query = "SELECT year(Date) as year_of_issue ,sum(case when issue='Scoured' then 1 else 0 end) as Scoured from dbo.lambmed group by year(Date)";
+
+            string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            List<lambmed> chartData = new List<lambmed>();
+
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            chartData.Add(new lambmed
+                            {
+
+                                Year = Convert.ToInt32(sdr["year_of_issue"].ToString()),
+                                Issue = sdr["Scoured"].ToString()
+
+                            });
+                        }
+                    }
+
+                    con.Close();
+                }
+            }
+
+            return View(chartData);
+
+        }
+
         public JsonResult GetEvents()
         {
             using (DBContext dc = new DBContext())

@@ -3,12 +3,35 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" />
+<br /><br /><br /><br /><br /><br />
+@using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+{
+<div class="container">
+    <div class="Login-form col-md-4 offset-md-4">
+        <h1 class="title"></h1>
+     
+        <form>
+            <div class="form-group">
+                <label>Username</label>
+              
+              @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
 
+            <div class="form-group">
+                <label>Password</label>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
 
+            <button class="btn btn-primary btn-block">Login</button> 
+        </form>
+    </div>
+</div>
+}
 
-
-
+    <!DOCTYPE html>
 
     <html>
     <head>
@@ -24,52 +47,40 @@
             }
         </style>
     </head>
-    <body>
-        <div style="background-image:url(../../img/background.jpg)">
-            <div id="login-div">
-                @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
-            {
-                    <table>
-                        <tr>
-                            <td></td>
-                            <td style="text-decoration:underline">Flock Control</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.LabelFor(model => model.Username)
-                            </td>
-                            <td>
-                                @Html.EditorFor(model => model.Username)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>@Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })</td>
-                        </tr>
-                        <tr>
-                            <td> @Html.LabelFor(model => model.Password)</td>
-                            <td> @Html.EditorFor(model => model.Password)</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
-                            </td>
-                            <td>@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })</td>
-                            <td></td>
-                            <td>
-                                <input type="submit" name="name" value="Login" />
-                            </td>
-                        </tr>
 
-                    </table>
-                }
-            </div>
-        </div>
+
+
+    <body style="background-image:url(../../img/background.jpg); background-repeat:no-repeat; background-size:2000px">
+
+        
+
     </body>
+  
 
 </html>
 
+<style type="text/css">
+    
+    .Login-form{
+margin-top:60px;
+box-shadow:0px 0px 10px 1px grey;
+border-radius:5px;
+padding-bottom:20px;
+background:#cccccc;
 
+}
+
+    .title{
+        background-image:url(../../img/Logo.jpg);
+        background-repeat:no-repeat;
+        background-position:center;
+        padding: 100px;
+        text-align:center;
+        color:#cccccc;
+        border-radius: 10px 10px 20px 20px;
+
+    }
+</style>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

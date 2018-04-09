@@ -30,6 +30,12 @@ namespace project.Controllers
             return View(model);
         }
 
+        public ActionResult EIndex()
+        {
+            List<calevent> model = (List<calevent>)repository.SelectAll();
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -44,6 +50,27 @@ namespace project.Controllers
                 repository.Insert(obj);
                 repository.Save();
                 return RedirectToAction("Index", "Portal");
+            }
+            else // not valid so redisplay
+            {
+                return View(obj);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ECreate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ECreate(calevent obj)
+        {
+            if (ModelState.IsValid)
+            { // check valid state
+                repository.Insert(obj);
+                repository.Save();
+                return RedirectToAction("Index", "Employee");
             }
             else // not valid so redisplay
             {
@@ -73,6 +100,29 @@ namespace project.Controllers
             }
         }
 
+        [HttpGet, ActionName("EEdit")]
+        public ActionResult EConfirmEdit(int id)
+        {
+            calevent existing = repository.SelectByID(id);
+            return View(existing);
+        }
+
+        [HttpPost]
+        public ActionResult EEdit(calevent obj)
+        {
+            if (ModelState.IsValid)
+            { // check valid state
+                repository.Update(obj);
+                repository.Save();
+                return RedirectToAction("Index", "Employee");
+            }
+            else // not valid so redisplay
+            {
+                return View(obj);
+            }
+        }
+
+
         [HttpGet, ActionName("Delete")]
         public ActionResult ConfirmDelete(int id)
         {
@@ -89,5 +139,20 @@ namespace project.Controllers
             return RedirectToAction("Index", "Portal");
         }
 
+        [HttpGet, ActionName("EDelete")]
+        public ActionResult EConfirmDelete(int id)
+        {
+            calevent existing = repository.SelectByID(id);
+            return View(existing);
+        }
+
+
+        [HttpPost]
+        public ActionResult EDelete(int id)
+        {
+            repository.Delete(id);
+            repository.Save();
+            return RedirectToAction("Index", "Portal");
+        }
     }
 }

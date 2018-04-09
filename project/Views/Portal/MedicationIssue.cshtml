@@ -1,6 +1,5 @@
 ﻿@{
     var chart = new Chart(width: 450, height: 450, theme: ChartTheme.Vanilla)
-.AddTitle("Number of sheep that put reid out each year")
 .AddSeries("Number of Sheep", chartType: "Bar",
     xValue: Model, xField: "Year",
     yValues: Model, yFields: "Issue").AddLegend("Details")

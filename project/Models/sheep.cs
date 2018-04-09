@@ -8,7 +8,7 @@ namespace project.Models
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Helpers;
-
+    using System.ComponentModel;
 
     public class ChartViewModel
     {
@@ -232,7 +232,7 @@ namespace project.Models
         [NotMapped]
         public bool rememberMe { get; set; }
 
-        [Required]
+        [DefaultValue("Admin")]
         [StringLength(225)]
         public string Role { get; set; }
 
@@ -623,5 +623,8 @@ namespace project.Models
 
         [NotMapped]
         public List<drug> DrugCollection { get; set; }
+
+        [NotMapped]
+        public int Year { get; internal set; }
     }
 }

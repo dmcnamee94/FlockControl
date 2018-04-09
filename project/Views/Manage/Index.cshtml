@@ -11,18 +11,33 @@
 }
 
 <h2 style="text-align:center">My Account</h2>
+<br />
+<div class="container">
+    <div class="col-lg-5" style="border:solid">
+        <h4 style="text-align:justify"> Personal Details </h4><img src="~/img/Person.png" style="background-color:#cccccc" class="col-lg-offset-10">
 
-<div>
-    <h4 style="text-align:center">Username: @Session["userName"].ToString() </h4>
-    <h4 style="text-align:center">FirstName: @Session["firstname"].ToString() </h4>
-    <h4 style="text-align:center">SecondName: @Session["secondname"].ToString() </h4>
-    <h4 style="text-align:center">DateOfBirth: @Session["DOB"].ToString() </h4>
-    <h4 style="text-align:center">Address: @Session["Address"].ToString() </h4>
-    <h4 style="text-align:center">Postcode: @Session["Postcode"].ToString() </h4>
-    <h4 style="text-align:center">Telephone: @Session["Telephone"].ToString() </h4>
-    <h4 style="text-align:center">Email: @Session["Email"].ToString() </h4>
 
-  
+
+        <br />
+        <h8 style="text-align:justify">To edit your personal details such as First Name, Second Name, Date of Birth, Address or Telephone number click the button below</h8>
+        <p style="text-align:right"><a class="btn btn-primary btn-lg round" onclick=@Html.ActionLink("Edit", "Edit", new { id = Session.SessionID })</a></p>
+
+
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-5" style="border:solid">
+        <h4 style="text-align:justify"> Security Details </h4><img src="~/img/lock.png" style="background-color:#cccccc" class="col-lg-offset-10">
+
+
+
+        <br />
+        <h8 style="text-align:justify">To edit your security details such as Username and Password click the button below</h8>
+        <p style="text-align:right"><a class="btn btn-primary btn-lg round" onclick=@Html.ActionLink("Edit", "Edit", new { id = Session.SessionID })</a></p>
+
+    </div>
+
+    <br />
 </div>
 
-@Html.ActionLink("Edit", "Edit", new { id = Session.SessionID })

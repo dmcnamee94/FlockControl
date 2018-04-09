@@ -16,18 +16,15 @@
     <h4 style="text-align:center" class="text-success">Add New Supplier </h4>
 </a>
 
-<table class="table" style="text-align:center">
+<table class="table" style="text-align:justify">
     <tr>
-        <th style="text-align:center">
+        <th >
             @Html.DisplayNameFor(model => model.SupplierName)
         </th>
-        <th style="text-align:center">
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th style="text-align:center">
+        <th >
             @Html.DisplayNameFor(model => model.Telephone)
         </th>
-        <th style="text-align:center">
+        <th >
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th></th>
@@ -37,9 +34,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.SupplierName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Telephone)
@@ -56,3 +50,4 @@
 }
 
 </table>
+<p style="text-align:right"><a class="btn btn-primary btn-lg round" onclick=@Html.ActionLink("Back","Suppliers", "DrugSupplier")</a></p>

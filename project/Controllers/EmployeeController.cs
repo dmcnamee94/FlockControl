@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,15 @@ namespace project.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public JsonResult GetEvents()
+        {
+            using (DBContext dc = new DBContext())
+            {
+                var events = dc.calevent.ToList();
+                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
         }
     }
 }

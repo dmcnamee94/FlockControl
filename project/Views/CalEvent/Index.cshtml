@@ -5,11 +5,11 @@
     Layout = "~/Views/Shared/_LayoutPortal.cshtml";
 }
 
-<h2>Index</h2>
+<h2 style="text-align:center">Calendar Entries</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<a href="@Url.Action("Create", "CalEvent")">
+    <h4 style="text-align:center" class="text-success">Add Calendar Entry </h4>
+</a>
 <table class="table">
     <tr>
         <th>

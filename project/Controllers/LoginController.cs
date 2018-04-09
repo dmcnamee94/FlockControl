@@ -142,6 +142,12 @@ namespace project.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            usertable user = new usertable();
+            using (DBContext DB = new DBContext())
+            {
+                user.Role = "Admin";
+            }
+              
             return View();
         }
 

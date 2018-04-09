@@ -1,13 +1,8 @@
 ﻿@model project.Models.calevent
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutPortal.cshtml";
-
-    if (Session["userID"] == null)
-    {
-        Response.Redirect("~/Home/Index");
-    }
+    ViewBag.Title = "ECreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2 style="text-align:center">New Calendar Event</h2>
@@ -108,8 +103,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Calendar", "Index", "Portal")
+    @Html.ActionLink("Back to Calendar", "Index", "Employee")
 </div>
-
-
-

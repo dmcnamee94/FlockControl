@@ -346,15 +346,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\addresslogo.png" />
     <Content Include="img\background.jpg" />
+    <Content Include="img\backgroundlogo.jpg" />
     <Content Include="img\employee2.jpg" />
     <Content Include="img\feed1.jpg" />
     <Content Include="img\Lambs-pic.jpg" />
+    <Content Include="img\lock.png" />
     <Content Include="img\Logo.jpg" />
     <Content Include="img\logooo.jpg" />
+    <Content Include="img\man-logo-icon-61344.png" />
     <Content Include="img\medication2.jpg" />
     <Content Include="img\newheader.jpg" />
     <Content Include="img\outside.jpg" />
+    <Content Include="img\outsidesize.jpg" />
+    <Content Include="img\Person.png" />
     <Content Include="img\phone.jpg" />
     <Content Include="img\pic1.jpg" />
     <Content Include="img\pic2.jpg" />
@@ -366,6 +372,7 @@
     <Content Include="img\shepherd-sheep-12-3.jpg" />
     <Content Include="img\tablet-hands.jpg" />
     <Content Include="img\time.jpg" />
+    <Content Include="img\timesize.jpg" />
     <Content Include="js\chart-config.js" />
     <Content Include="js\init-analytics.js" />
     <Content Include="js\jquery-1.9.1.min.js" />
@@ -608,6 +615,11 @@
     <Content Include="Views\CalEvent\Edit.cshtml" />
     <Content Include="Views\CalEvent\Delete.cshtml" />
     <Content Include="Views\Portal\SIndex.cshtml" />
+    <Content Include="Views\Portal\LambMedIssue.cshtml" />
+    <Content Include="Views\CalEvent\EEdit.cshtml" />
+    <Content Include="Views\CalEvent\ECreate.cshtml" />
+    <Content Include="Views\CalEvent\EIndex.cshtml" />
+    <Content Include="Views\CalEvent\EDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

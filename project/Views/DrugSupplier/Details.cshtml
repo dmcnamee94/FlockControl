@@ -12,46 +12,65 @@
 
 <h2 style="text-align:center">Details</h2>
 
-<div>
-    <h4 style="text-align:center">See Supplier details below</h4>
-    <hr />
-    <form class="form-horizontal" style="text-align:center">
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.SupplierName)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.SupplierName)
-        </div>
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Address)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Address)
-        </div>
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Telephone)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Telephone)
-        </div>
+@using (Html.BeginForm())
+{
+    //@Html.AntiForgeryToken()
+    <div class="container">
+        <form class="form-horizontal">
+            <h4 style="text-align:center">See Medication Supplier details below</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.SupplierID)
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.SupplierName)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.SupplierName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Address)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
 
-        <h5>
-            <label>
-                @Html.DisplayNameFor(model => model.Email)
-            </label>
-        </h5>
-        <div>
-            @Html.DisplayFor(model => model.Email)
-        </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Telephone)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
 
-    </form>
-</div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Email)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <br /><br />
+            </div>
+
+        </form>
+    </div>
+}
 <p style="text-align:center">
     @Html.ActionLink("Edit", "Edit", new { id = Model.SupplierID }) |
     @Html.ActionLink("Back to List", "Index")
