@@ -15,6 +15,5 @@ namespace project.Models.Repositories
         void Update(sheep obj);
         void Delete(int id);
         void Save();
-
     }
 }

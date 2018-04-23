@@ -32,9 +32,6 @@ namespace project.Controllers
        
         public ActionResult SIndex()
         {
-            // DBContext db = new DBContext();
-            // return View(db.sheep.ToList());
-
             string query = "SELECT Breed, COUNT(SheepID) TotalSheep";
             query += " FROM Sheep GROUP BY Breed";
             string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;

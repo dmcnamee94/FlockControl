@@ -29,14 +29,14 @@ namespace project.Models
 
         [Display(Name = "Date Of Birth")]
         [Column(TypeName = "date")]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         [Required(ErrorMessage = "Date Required")]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DOB { get; set; }
 
         [Display(Name = "Tag Number")]
+        [Remote("doessheeptagExist", "Sheep", HttpMethod = "POST", ErrorMessage = "Tag Number already in use. Please enter a different Tag Number")]
         [Required(ErrorMessage = "Tag No Required")]
-       // [Remote("doessheeptagExist", "Sheep", HttpMethod = "POST", ErrorMessage = "Tag Number already in use. Please enter a different Tag Number")]
         public virtual int sheeptag { get; set; }
 
         [Required]
@@ -65,12 +65,18 @@ namespace project.Models
 
         [NotMapped]
         public string sheepdetail { get; internal set; }
+
+        [NotMapped]
+        public Nullable<bool> IsDeleted { get; set; }
+
     }
 
     
     public class createsheep
     {
-        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int SheepID { get; set; }
+
         [Required]
         [Display(Name = "Breed Type")]
         [DataType(DataType.Text)]
@@ -84,6 +90,7 @@ namespace project.Models
         public DateTime DOB { get; set; }
 
         [Display(Name = "Tag Number")]
+        [RegularExpression(@"([0-9]+)", ErrorMessage = "Must be a Number.")]
         [Required(ErrorMessage = "Tag No Required")]
         [Remote("doessheeptagExist", "Sheep", HttpMethod = "POST", ErrorMessage = "Tag Number already in use. Please enter a different Tag Number")]
         public virtual int sheeptag { get; set; }
@@ -102,6 +109,9 @@ namespace project.Models
 
         [NotMapped]
         public List<breed> BreedCollection { get; set; }
+
+        [NotMapped]
+        public Boolean IsDeleted { get; set; }
 
     }
 
@@ -140,13 +150,8 @@ namespace project.Models
         [NotMapped]
         public List<drug> DrugCollection { get; set; }
 
-        //[NotMapped]
-       // public string issue { get; internal set; }
-
         [NotMapped]
         public int Year { get; internal set; }
-
-
     }
 
     [Table("calevent")]
