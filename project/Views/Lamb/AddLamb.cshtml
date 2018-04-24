@@ -1,0 +1,129 @@
+﻿@model project.Models.createlamb
+
+
+@using (Html.BeginForm("AddLamb", "Lamb", FormMethod.Post, new { id = "form-addlamb", @class = "full-form" }))
+{
+    // @Html.AntiForgeryToken()
+
+    <div class="container">
+        <form class="form-horizontal">
+            <h4 style="text-align:left" class="text-success"><img src="~/img/logomodal.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter Details</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.TagNo)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.TagNo, new { htmlAttributes = new { @class = "form-control" , @Value = ""} })
+                    @Html.ValidationMessageFor(model => model.TagNo, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.DOB)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Breed)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.Breed, ViewBag.ListOfBreed as SelectList, "", new { @id = "DropDwnn", @class = "form-control", @Value = "" })
+                    @Html.ValidationMessageFor(model => model.Breed, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Sex)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.Sex, new List<SelectListItem>
+           {
+               new SelectListItem {Text = "Female", Value = "Female" },
+               new SelectListItem {Text = "Male", Value = "Male" }
+
+           }, new { style = "width:220px; height:30px;" })
+                    @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+                </div>
+                <br /> <br />
+            </div>
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.ResultDes)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.ResultDes, ViewBag.ListofResult as SelectList, "", new { @id = "DropDwnn", @class = "form-control", @Value = "" })
+                    @Html.ValidationMessageFor(model => model.ResultDes, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.FinishWeight)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.FinishWeight, new List<SelectListItem>
+           {
+               new SelectListItem {Text = "N/A", Value = "" },
+               new SelectListItem {Text = "20KG", Value = "20" },
+               new SelectListItem {Text = "21KG", Value = "21" },
+               new SelectListItem {Text = "22KG", Value = "22" },
+               new SelectListItem {Text = "23KG", Value = "23" },
+               new SelectListItem {Text = "25KG", Value = "25" },
+               new SelectListItem {Text = "25KG", Value = "25" }
+
+           }, new { style = "width:220px; height:30px;" })
+                    @Html.ValidationMessageFor(model => model.FinishWeight, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.sheeptag)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.sheeptag, ViewBag.ListofSheep as SelectList, "", new { @id = "DropDwnn", @class = "form-control", @Value = "" })
+                    @Html.ValidationMessageFor(model => model.sheeptag, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-4">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
+<div>
+    <a href="#" class="btn btn-danger btn-sm" data-dismiss="modal" id="r">Cancel</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

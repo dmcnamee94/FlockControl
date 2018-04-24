@@ -67,20 +67,6 @@ namespace project.Controllers
                 return Json(SheepList, JsonRequestBehavior.AllowGet);
             }
 
-           // else if(SearchBy == "Age")
-           // {
-             //   try
-               // {
-                 //   int Age = Convert.ToInt32(SearchValue);
-                   // SheepList = db.sheep.Where(x => x.Age == Age || SearchValue == null).ToList();
-                //}
-                //catch (FormatException)
-               // {
-                 //   Console.WriteLine("{0} Is Not An Age", SearchValue);
-                //}
-
-                //return Json(SheepList, JsonRequestBehavior.AllowGet);
-            //}
             else
             {
                 SheepList = db.sheep.Where(x => x.Breed.StartsWith(SearchValue) || SearchValue == null).ToList();
@@ -155,7 +141,7 @@ namespace project.Controllers
                 }
                 else
                 {
-                    Sheep = Sheep.Where(s => s.Breed.Contains(searchString)|| (s.detail.Equals(searchString)));
+                    Sheep = Sheep.Where(s => s.Breed.Contains(searchString)|| (s.detail.Equals(searchString)) || (s.sex.Equals(searchString)));
                 }
             
             }

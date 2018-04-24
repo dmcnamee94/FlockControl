@@ -496,8 +496,9 @@ namespace project.Models
 
         [Required]
         [Column(TypeName = "date")]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         [Display(Name = "Date Of Birth")]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DOB { get; set; }
 
        
@@ -574,7 +575,7 @@ namespace project.Models
         [Display(Name = "Sex")]
         public string Sex { get; set; }
 
-        [Display(Name = "Lamb Tag Number")]
+        [Display(Name = "Tag Number")]
         [Required(ErrorMessage = "Tag No Required")]
         [Remote("doesExist", "Lamb", HttpMethod = "POST", ErrorMessage = "Tag Number already exists, please enter a different Tag Number")]
         public int TagNo { get; set; }

@@ -1,10 +1,9 @@
-﻿@model PagedList.IPagedList<project.Models.sheep>
+﻿@model PagedList.IPagedList<project.Models.lamb>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "NewIndex";
-   
 
     if (Session["userID"] == null)
     {
@@ -14,62 +13,62 @@
 <script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
-<h2 style="text-align:center">Your Sheep</h2>
+<h2 style="text-align:center">Your Lambs</h2>
 <div style="text-align:center">
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#MyModal">Add New Sheep</button>
-    </div>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#MyModal">Add New Lamb</button>
+</div>
 
 
-@using (Html.BeginForm("NewIndex", "Sheep", FormMethod.Get))
+@using (Html.BeginForm("NewIndex", "Lamb", FormMethod.Get))
 {
     <p style="text-align:center">
         <br />
-       @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @placeholder = "Search" })
-      <button type="submit"  class="btn btn-info glyphicon glyphicon-search btn-success"></button>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @placeholder = "Search" })
+        <button type="submit" class="btn btn-info glyphicon glyphicon-search btn-success"></button>
 
     </p>
 }
 <table class="table" style="text-align:center">
     <tr>
-        <th title="Sort by Tag No", style="text-align:center">
+        <th title="Sort by Tag No" , style="text-align:center">
             @Html.ActionLink("Tag No", "NewIndex", new { sortOrder = ViewBag.TagNoSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
-        <th title="Sort by Breed", style="text-align:center">
-            @Html.ActionLink("Breed", "NewIndex", new { sortOrder = ViewBag.NameSortParm, currentFilter=ViewBag.CurrentFilter})
+        <th title="Sort by Breed" , style="text-align:center">
+            @Html.ActionLink("Breed", "NewIndex", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
-
-        <th title="Sort by Date of Birth", style="text-align:center">
+        <th title="Sort by Date of Birth" , style="text-align:center">
             @Html.ActionLink("Date of Birth", "NewIndex", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
-        <th title="Sort by Join Year", style="text-align:center">
-            @Html.ActionLink("Join Year", "NewIndex", new { sortOrder = ViewBag.JoinYearSortParm, currentFilter = ViewBag.CurrentFilter })
+        <th title="Sort by Mother Ewe" , style="text-align:center">
+            @Html.ActionLink("Mother Ewe", "NewIndex", new { sortOrder = ViewBag.MotherEweSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
 
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.sheeptag)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Breed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DOB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.yearadded)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Breed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sheeptag)
+            </td>
 
-       <td>
-        <a class="btn btn-default glyphicon glyphicon-edit btn-success" onclick="EditSheep(@item.SheepID)"></a>
-        <a class="btn btn-default glyphicon glyphicon-trash btn-danger" onclick="DeleteSheepRecord(@item.SheepID)"></a>
-        
-        </td>
-    </tr>
-}
+            <td>
+                <a class="btn btn-default glyphicon glyphicon-edit btn-success" onclick="EditLamb(@item.LambID)"></a>
+                <a class="btn btn-default glyphicon glyphicon-trash btn-danger" onclick="DeleteLambRecord(@item.LambID)"></a>
+
+            </td>
+        </tr>
+    }
 
 </table>
 <br />
@@ -87,7 +86,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
                 <h4 id="ModalTitle"></h4>
             </div>
             <div class="modal-body">
-                @Html.Partial("AddSheep", new project.Models.createsheep())
+                @Html.Partial("AddLamb", new project.Models.createlamb())
             </div>
         </div>
 
@@ -103,7 +102,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
                 <h4 id="ModalTitle"></h4>
             </div>
             <div class="modal-body" id="myModalBodyDiv1">
-                @Html.Partial("EditSheep", new project.Models.sheep())
+                @Html.Partial("EditLamb", new project.Models.lamb())
 
             </div>
         </div>
@@ -118,7 +117,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
         <div class="modal-content">
             <div class="modal-header">
                 <a href="#" class="close" data-dismiss="modal">&times;</a>
-                <h4 style="text-align:left" class="text-success"><img src="~/img/logomodal.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete Sheep Record</h4>
+                <h4 style="text-align:left" class="text-success"><img src="~/img/logomodal.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete Lamb Record</h4>
             </div>
             <div class="modal-body">
                 <h4 style="text-align:center">Are You Sure You Want To Delete This Record?</h4>
@@ -133,25 +132,25 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 
 <script>
 
-    var EditSheep = function (SheepId) {
-       
-        var url = "/Sheep/GetEditSheep?SheepID=" + SheepId;
+    var EditLamb = function (LambId) {
+
+        var url = "/Lamb/GetEditLamb?LambID=" + LambId;
 
         $("#myModalBodyDiv1").load(url, function () {
-          
+
             $("#EditModal").modal("show");
-           
+
         })
 
     }
-   
+
     $(document).ready(function () {
-     
+
         $('#MyModal').on('shown.bs.modal', function () {
             $('#myInput').focus()
         })
 
-        $("#MyModal").on("submit", "#form-addsheep", function (e) {
+        $("#MyModal").on("submit", "#form-addlamb", function (e) {
             e.preventDefault();  // prevent standard form submission
 
             var form = $(this);
@@ -161,34 +160,33 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
                 data: form.serialize(),
                 success: function (partialResult) {
                     $("#formContent").html(partialResult);
-                    alert("Successfully added Sheep record");
+                    alert("Successfully added Lamb record");
                     $("#MyModal").modal("hide");
                     window.location.reload();
                 }
             });
         });
     });
- 
+
 
     //Show The Popup Modal For DeleteComfirmation
-    var DeleteSheepRecord = function (SheepId) {
-        $("#SheepID").val(SheepId);
+    var DeleteLambRecord = function (LambId) {
+        $("#LambID").val(LambId);
         $("#DeleteConfirmation").modal("show");
     }
     var ConfirmDelete = function () {
-        var SheepId = $("#SheepID").val();
+        var LambId = $("#LambID").val();
         $.ajax({
             type: "POST",
-            url: "/Sheep/Delete?id=" + SheepId,
+            url: "/Lamb/Delete?id=" + LambId,
             success: function (result) {
                 $("#DeleteConfirmation").modal("hide");
-                $(".row_" + SheepId).remove();
-                alert("Successfully deleted Sheep record");
+                $(".row_" + LambId).remove();
+                alert("Successfully deleted Lamb record");
                 window.location.reload();
             }
         })
     }
 
-    
-    </script>
- 
+
+</script>

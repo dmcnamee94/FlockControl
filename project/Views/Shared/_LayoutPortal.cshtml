@@ -26,7 +26,7 @@
                            role="button" aria-haspopup="true" aria-expanded="false">My Flock<span class="caret"></span></a>
                         <ul class="dropdown-menu" style="background-color:#cccccc">
                             <li>@Html.ActionLink(" Sheep", "NewIndex", "Sheep")</li>
-                            <li>@Html.ActionLink(" Lambs", "Index", "Lamb")</li>
+                            <li>@Html.ActionLink(" Lambs", "NewIndex", "Lamb")</li>
                             <li>@Html.ActionLink(" Breeds","Index", "Breed")</li>
                         </ul>
                     </li>
@@ -52,9 +52,16 @@
         </div>
     </div>
     <div class="container body-content">
-        <br />
-            <img src="~/img/logooo.jpg" style= "display:block ; margin-left:auto; margin-right:auto; background-color:#cccccc" ><br />
-            <br />
+        <div id="banner">
+            <div id="banner-content">
+                <br />
+                <img src="~/img/logooo.jpg" style="display:block ; margin-left:auto; margin-right:auto; background-color:#cccccc"><br />
+                @*<img src="~/img/newbanner.png" style="display:block;width:; height:auto; position:center"><br />*@
+            </div>
+        </div>
+        @*<br/>*@
+            @*<img src="~/img/logooo.jpg" style= "display:block ; margin-left:auto; margin-right:auto; background-color:#cccccc" ><br />*@
+            @*<br/>*@
                 @RenderBody()
                 <hr />
                 <footer>

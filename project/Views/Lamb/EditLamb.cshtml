@@ -1,7 +1,7 @@
-﻿@model project.Models.sheep
+﻿@model project.Models.lamb
 
 
-@using (Html.BeginForm("EditSheep", "Sheep", FormMethod.Post, new { id = "form-editsheep", @class = "full-form" }))
+@using (Html.BeginForm("EditLamb", "Lamb", FormMethod.Post, new { id = "form-editlamb", @class = "full-form" }))
 {
     //@Html.AntiForgeryToken()
 
@@ -10,21 +10,20 @@
             <h4 style="text-align:left" class="text-success"><img src="~/img/logomodal.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update Details</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.SheepID)
-
+            @Html.HiddenFor(model => model.LambID)
             <div class="form-group">
                 <h4>
                     <label class="control-label col-md-4">
-                        @Html.LabelFor(model => model.sheeptag)
+                        @Html.LabelFor(model => model.TagNo)
                     </label>
                 </h4>
                 <div class="col-md-6">
-                    @Html.EditorFor(model => model.sheeptag, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })﻿
-
-                    @Html.ValidationMessageFor(model => model.sheeptag, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.TagNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.TagNo, "", new { @class = "text-danger" })
                 </div>
                 <br /> <br />
             </div>
+
             <div class="form-group">
                 <h4>
                     <label class="control-label col-md-4">
@@ -37,6 +36,7 @@
                 </div>
                 <br /> <br />
             </div>
+
             <div class="form-group">
                 <h4>
                     <label class="control-label col-md-4">
@@ -44,7 +44,7 @@
                     </label>
                 </h4>
                 <div class="col-md-6">
-                   @Html.DropDownListFor(model => model.Breed, ViewBag.ListofBreed as SelectList, "", new { @id = "DropDwnn", @class = "form-control"})
+                    @Html.DropDownListFor(model => model.Breed, ViewBag.ListofBreed as SelectList, "", new { @id = "DropDwnn", @class = "form-control", @Value = "" })
                     @Html.ValidationMessageFor(model => model.Breed, "", new { @class = "text-danger" })
                 </div>
                 <br /> <br />
@@ -52,59 +52,66 @@
             <div class="form-group">
                 <h4>
                     <label class="control-label col-md-4">
-                        @Html.LabelFor(model => model.detail)
+                        @Html.LabelFor(model => model.Sex)
                     </label>
                 </h4>
                 <div class="col-md-6">
-                    @Html.DropDownListFor(model => model.detail, new List<SelectListItem>
-           {
-               new SelectListItem {Text = "Bred", Value = "Bred" },
-               new SelectListItem {Text = "Bought", Value = "Bought" },
-           }, new { style = "width:280px; height:30px;" })
-                    @Html.ValidationMessageFor(model => model.detail, "", new { @class = "text-danger" })
-                </div>
-                <br /> <br />
-            </div>
-            <div class="form-group">
-                <h4>
-                    <label class="control-label col-md-4">
-                        @Html.LabelFor(model => model.sex)
-                    </label>
-                </h4>
-                <div class="col-md-6">
-                    @Html.DropDownListFor(model => model.sex, new List<SelectListItem>
+                    @Html.DropDownListFor(model => model.Sex, new List<SelectListItem>
            {
                new SelectListItem {Text = "Female", Value = "Female" },
                new SelectListItem {Text = "Male", Value = "Male" }
 
            }, new { style = "width:280px; height:30px;" })
-                    @Html.ValidationMessageFor(model => model.sex, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
                 </div>
                 <br /> <br />
             </div>
-
             <div class="form-group">
                 <h4>
                     <label class="control-label col-md-4">
-                        @Html.LabelFor(model => model.yearadded)
+                        @Html.LabelFor(model => model.sheeptag)
                     </label>
                 </h4>
                 <div class="col-md-6">
-                    @Html.DropDownListFor(model => model.yearadded, new List<SelectListItem>
-            {
-               new SelectListItem {Text = "2018", Value = "2018" },
-               new SelectListItem {Text = "2017", Value = "2017" },
-               new SelectListItem {Text = "2016", Value = "2016" },
-               new SelectListItem {Text = "2015", Value = "2015" },
-               new SelectListItem {Text = "2014", Value = "2014" },
-               new SelectListItem {Text = "2013", Value = "2013" }
-           }, new { style = "width:280px; height:30px;" })
-                    @Html.ValidationMessageFor(model => model.yearadded, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(model => model.sheeptag, ViewBag.ListofSheep as SelectList, "", new { @id = "DropDwnn", @class = "form-control", @Value = "" })
+                    @Html.ValidationMessageFor(model => model.sheeptag, "", new { @class = "text-danger" })
                 </div>
                 <br /> <br />
             </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.ResultDes)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.ResultDes, ViewBag.ListofResult as SelectList, "", new { @id = "DropDwnn", @class = "form-control", @Value = "" })
+                    @Html.ValidationMessageFor(model => model.ResultDes, "", new { @class = "text-danger" })
+                </div>
+                <br /> <br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.FinishWeight)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.FinishWeight, new List<SelectListItem>
+           {
+               new SelectListItem {Text = "N/A", Value = "" },
+               new SelectListItem {Text = "20KG", Value = "20KG" },
+               new SelectListItem {Text = "21KG", Value = "21KG" },
+               new SelectListItem {Text = "22KG", Value = "22KG" },
+               new SelectListItem {Text = "23KG", Value = "23KG" },
+               new SelectListItem {Text = "25KG", Value = "25KG" },
+               new SelectListItem {Text = "25KG", Value = "25KG" }
 
-
+           }, new { style = "width:280px; height:30px;" })
+                    @Html.ValidationMessageFor(model => model.FinishWeight, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
             <div class="form-group">
                 <div class="col-md-offset-5 col-md-4">
                     <input type="submit" value="Save" class="btn btn-success" />
@@ -133,13 +140,14 @@
             $.ajax({
 
                 type: "POST",
-                url: "/Sheep/EditSheep",
+                url: "/Lamb/EditLamb",
                 data: myformdata,
                 success: function () {
-                    alert("Successfully updated Sheep record");
+                    alert("Successfully updated Lamb record");
                     $("#loaderDiv").hide();
                     $("#myModal").modal("hide");
-                    window.location.href = "/Sheep/NewIndex";
+                    window.location.reload();
+                    //window.location.href = "/Lamb/NewIndex";
 
                 }
 

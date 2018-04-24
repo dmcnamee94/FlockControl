@@ -371,9 +371,11 @@
     <Content Include="img\Lambs-pic.jpg" />
     <Content Include="img\lock.png" />
     <Content Include="img\Logo.jpg" />
+    <Content Include="img\logomodal.png" />
     <Content Include="img\logooo.jpg" />
     <Content Include="img\man-logo-icon-61344.png" />
     <Content Include="img\medication2.jpg" />
+    <Content Include="img\newbanner.png" />
     <Content Include="img\newheader.jpg" />
     <Content Include="img\outside.jpg" />
     <Content Include="img\outsidesize.jpg" />
@@ -383,6 +385,7 @@
     <Content Include="img\pic2.jpg" />
     <Content Include="img\pic3.JPG" />
     <Content Include="img\pic4.jpg" />
+    <Content Include="img\sheep-banner.jpg" />
     <Content Include="img\sheepbackground.jpg" />
     <Content Include="img\sheepman.jpg" />
     <Content Include="img\sheeppic.jpg" />
@@ -641,6 +644,10 @@
     <Content Include="Views\Sheep\NewIndex.cshtml" />
     <Content Include="Views\Sheep\AddSheep.cshtml" />
     <Content Include="Views\Sheep\EditSheep.cshtml" />
+    <Content Include="Views\Lamb\AddLamb.cshtml" />
+    <Content Include="Views\Lamb\EditLamb.cshtml" />
+    <Content Include="Views\Lamb\NewIndex.cshtml" />
+    <Content Include="Views\Lamb\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
