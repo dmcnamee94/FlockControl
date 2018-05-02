@@ -1,0 +1,130 @@
+﻿@model project.Models.lambmed
+
+
+@using (Html.BeginForm("EditMedication", "LambMed", FormMethod.Post, new { id = "form-editmedication", @class = "full-form" }))
+{
+    //@Html.AntiForgeryToken()
+
+    <div class="container">
+        <form class="form-horizontal" id="myForm">
+            <h4 style="text-align:left" class="text-success"><img src="~/img/logomodal.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update Details</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MedID)
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.TagNo)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.TagNo, ViewBag.ListofLambs as SelectList, "", new { @id = "DropDwnn", @class = "form-control", @Value = "" })
+                    @Html.ValidationMessageFor(model => model.TagNo, "", new { @class = "text-danger" })
+                </div>
+                <br /> <br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Date)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+                <br /> <br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Name)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.Name, ViewBag.ListofBreed as SelectList, "", new { @id = "DropDwnn", @class = "form-control", @Value = "" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <br /> <br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Issue)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Issue, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Issue, "", new { @class = "text-danger" })
+                </div>
+                <br /> <br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Dosage)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.Dosage, new List<SelectListItem>
+           {
+               new SelectListItem {Text = null, Value = null },
+               new SelectListItem {Text = "2ml", Value = "2ml" },
+               new SelectListItem {Text = "3ml", Value = "3ml" },
+               new SelectListItem {Text = "5ml", Value = "5ml" },
+               new SelectListItem {Text = "100ml", Value = "100ml" },
+               new SelectListItem {Text = "N/A", Value = "N/A" },
+           }, new { style = "width:220px; height:30px;" })
+                    @Html.ValidationMessageFor(model => model.Dosage, "", new { @class = "text-danger", @Value = "" })
+                </div>
+                <br /> <br />
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-4">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </div>
+        </form>
+        <div style="text-align:center;display:none" id="loaderDiv">
+            <img src="~/img/Logo.jpg" width="150" />
+        </div>
+
+    </div>
+}
+
+<div>
+    <a href="#" class="btn btn-danger btn-sm" data-dismiss="modal" id="r">Cancel</a>
+</div>
+<script>
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function () {
+
+            $("#loaderDiv").show();
+
+            var myformdata = $("#myForm").serialize();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/LambMed/EditMedication",
+                data: myformdata,
+                success: function () {
+                    alert("Successfully updated medical record");
+                    $("#loaderDiv").hide();
+                    $("#myModal").modal("hide");
+                    window.location.href = "/LambMed/NewIndex";
+
+                }
+
+            })
+        })
+
+    })
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

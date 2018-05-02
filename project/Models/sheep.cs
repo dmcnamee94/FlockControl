@@ -300,6 +300,7 @@ namespace project.Models
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int BreedID { get; set; }
 
+        [Required]
         [Display(Name = "Breed")]
         [Column("Breed")]
         [StringLength(225)]
