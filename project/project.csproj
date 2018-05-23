@@ -674,6 +674,18 @@
     <Content Include="Views\Breed\AddBreed.cshtml" />
     <Content Include="Views\Breed\EditBreed.cshtml" />
     <Content Include="Views\Breed\_ViewStart.cshtml" />
+    <Content Include="Views\Meal\NewIndex.cshtml" />
+    <Content Include="Views\Meal\AddMeal.cshtml" />
+    <Content Include="Views\Meal\EditMeal.cshtml" />
+    <Content Include="Views\Meal\_ViewStart.cshtml" />
+    <Content Include="Views\Drug\NewIndex.cshtml" />
+    <Content Include="Views\Drug\AddDrug.cshtml" />
+    <Content Include="Views\Drug\EditDrug.cshtml" />
+    <Content Include="Views\Drug\_ViewStart.cshtml" />
+    <Content Include="Views\Movement\NewIndex.cshtml" />
+    <Content Include="Views\Movement\AddMovement.cshtml" />
+    <Content Include="Views\Movement\EditMovement.cshtml" />
+    <Content Include="Views\Movement\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

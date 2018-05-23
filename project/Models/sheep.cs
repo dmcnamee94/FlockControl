@@ -326,7 +326,7 @@ namespace project.Models
         [StringLength(225)]
         public string Name { get; set; }
 
-        
+        [Required]
         [DataType(DataType.Currency)]
         public System.Decimal Price { get; set; }
 
@@ -342,7 +342,7 @@ namespace project.Models
         [Column(TypeName = "date")]
         [Required]
         [DataType(DataType.Date)]
-       public DateTime DateofPurchase { get; set; }
+        public DateTime DateofPurchase { get; set; }
 
         [Required]
         [StringLength(225)]
@@ -363,6 +363,7 @@ namespace project.Models
         [StringLength(225)]
         public string Name { get; set; }
 
+        [Required]
         [DataType(DataType.Currency)]
         public System.Decimal Price { get; set; }
 
@@ -374,16 +375,20 @@ namespace project.Models
         [StringLength(225)]
         public string Withdrawalperiod { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "date")]
         public DateTime Dateofdisposal { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "date")]
         public DateTime PurchaseDate { get; set; }
 
+        [Required]
+        [DataType(DataType.Text)]
         public int BottleSize { get; set; }
 
         public bool IsDisposedOf {get; set;}
@@ -405,9 +410,9 @@ namespace project.Models
         public string Eventcode { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Date Of Movement")]
         [Column(TypeName = "date")]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date Of Movement")]
         public DateTime Date { get; set; }
 
         [Required]
@@ -448,7 +453,7 @@ namespace project.Models
         public string Description { get; set; }
 
         [Required]
-        [Remote("doesrefnoExist", "Movement", HttpMethod = "POST", ErrorMessage = "Reference Number already recorded for. Please enter a different Reference Number")]
+        [Remote("doesrefnoExist", "Movement", HttpMethod = "POST", ErrorMessage = "Reference Number already in use")]
         [Display(Name = "Reference Number")]
         public int RefNo { get; set; }
 

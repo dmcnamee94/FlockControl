@@ -1,0 +1,191 @@
+﻿@model PagedList.IPagedList<project.Models.drug>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "NewIndex";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+
+<script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+<h2 style="text-align:center">Drug Records</h2>
+<div style="text-align:center">
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#MyModal">Add New Drug Product</button>
+</div>
+
+
+@using (Html.BeginForm("NewIndex", "Drug", FormMethod.Get))
+{
+    <p style="text-align:center">
+        <br />
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @placeholder = "Search" })
+        <button type="submit" class="btn btn-info glyphicon glyphicon-search btn-success"></button>
+
+    </p>
+}
+<table class="table" style="text-align:center">
+    <tr>
+        <th title="Sort by Name" , style="text-align:center">
+            @Html.ActionLink("Name", "NewIndex", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th title="Sort by Date" , style="text-align:center">
+            @Html.ActionLink("Date Of Purchase", "NewIndex", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+
+        <th title="Sort by Drug Supplier" , style="text-align:center">
+            @Html.ActionLink("Drug Supplier", "NewIndex", new { sortOrder = ViewBag.DrugSuppierSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th title="Sort by Price" , style="text-align:center">
+            @Html.ActionLink("Price", "NewIndex", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrugSupplier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+            <td>
+                <a class="btn btn-default glyphicon glyphicon-edit btn-success" onclick="EditDrug(@item.DrugID)"></a>
+                <a class="btn btn-default glyphicon glyphicon-trash btn-danger" onclick="DeleteDrugRecord(@item.DrugID)"></a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("NewIndex",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+@*Popup Modal for add*@
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("AddDrug", new project.Models.drug())
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*Popup Modal for edit*@
+<div class="modal fade" id="EditModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv1">
+                @Html.Partial("EditDrug", new project.Models.drug())
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*Popup Modal for delete*@
+
+<div class="modal fade" id="DeleteConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 style="text-align:left" class="text-success"><img src="~/img/logomodal.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete Drug Record</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align:center">Are You Sure You Want To Delete This Record?</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-danger" data-dismiss="modal" id="r">Cancel</a>
+                <a href="#" class="btn btn-success" onclick="ConfirmDelete()">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var EditDrug = function (DrugId) {
+
+        var url = "/Drug/GetEditDrug?DrugID=" + DrugId;
+
+        $("#myModalBodyDiv1").load(url, function () {
+
+            $("#EditModal").modal("show");
+
+        })
+
+    }
+
+    $(document).ready(function () {
+
+        $('#MyModal').on('shown.bs.modal', function () {
+            $('#myInput').focus()
+        })
+
+        $("#MyModal").on("submit", "#form-adddrug", function (e) {
+            e.preventDefault();  // prevent standard form submission
+
+            var form = $(this);
+            $.ajax({
+                url: form.attr("action"),
+                method: form.attr("method"),  // post
+                data: form.serialize(),
+                success: function (partialResult) {
+                    $("#formContent").html(partialResult);
+                    alert("Successfully added Drug record");
+                    $("#MyModal").modal("hide");
+                    window.location.reload();
+                }
+            });
+        });
+    });
+
+
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteDrugRecord = function (DrugId) {
+        $("#DrugID").val(DrugId);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var DrugId = $("#DrugID").val();
+        $.ajax({
+            type: "POST",
+            url: "/Drug/Delete?id=" + DrugId,
+            success: function (result) {
+                $("#DeleteConfirmation").modal("hide");
+                $(".row_" + DrugId).remove();
+                alert("Successfully deleted Drug record");
+                window.location.reload();
+            }
+        })
+    }
+
+</script>

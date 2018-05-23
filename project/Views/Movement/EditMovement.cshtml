@@ -1,0 +1,124 @@
+﻿@model project.Models.movement
+
+
+@using (Html.BeginForm("EditMovement", "Movement", FormMethod.Post, new { id = "form-editmovement", @class = "full-form" }))
+{
+    //@Html.AntiForgeryToken()
+
+    <div class="container">
+        <form class="form-horizontal" id="myForm">
+            <h4 style="text-align:left" class="text-success"><img src="~/img/logomodal.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update Details</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MovementID)
+
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.RefNo)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.RefNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.RefNo, "", new { @class = "text-danger" })
+                </div>
+                <br /> <br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Date)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+                <br /> <br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Eventcode)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.Eventcode, ViewBag.ListofEvent as SelectList, "", new { @id = "DropDwnn", @class = "form-control", @Value = "" })
+                    @Html.ValidationMessageFor(model => model.Eventcode, "", new { @class = "text-danger" })
+                </div>
+                <br /> <br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.Description)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.Description, new List<SelectListItem>
+           {
+               new SelectListItem {Text = null, Value = null },
+               new SelectListItem {Text = "Ewes", Value = "Ewes" },
+               new SelectListItem {Text = "Lambs", Value = "Lambs" },
+               new SelectListItem {Text = "Ewes&Lambs", Value = "Ewes&Lambs" },
+           }, new { style = "width:220px; height:30px;" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger", @Value = "" })
+                </div>
+                <br /> <br />
+            </div>
+            <div class="form-group">
+                <h4>
+                    <label class="control-label col-md-4">
+                        @Html.LabelFor(model => model.NoAnimals)
+                    </label>
+                </h4>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.NoAnimals, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NoAnimals, "", new { @class = "text-danger", @Value = "" })
+                </div>
+                <br /> <br />
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-4">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </div>
+        </form>
+        <div style="text-align:center;display:none" id="loaderDiv">
+            <img src="~/img/Logo.jpg" width="150" />
+        </div>
+    </div>
+}
+
+<div>
+    <a href="#" class="btn btn-danger btn-sm" data-dismiss="modal" id="r">Cancel</a>
+</div>
+<script>
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function () {
+
+            $("#loaderDiv").show();
+
+            var myformdata = $("#myForm").serialize();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Movement/EditMovement",
+                data: myformdata,
+                success: function () {
+                    alert("Successfully updated Movement record");
+                    $("#loaderDiv").hide();
+                    $("#myModal").modal("hide");
+                    window.location.href = "/Movement/NewIndex";
+
+                }
+            })
+        })
+    })
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

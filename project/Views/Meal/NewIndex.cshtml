@@ -1,0 +1,191 @@
+﻿@model PagedList.IPagedList<project.Models.mealproduct>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "NewIndex";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+}
+<script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+<h2 style="text-align:center">Feeding Records</h2>
+<div style="text-align:center">
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#MyModal">Add New Meal Product</button>
+</div>
+
+
+@using (Html.BeginForm("NewIndex", "Meal", FormMethod.Get))
+{
+    <p style="text-align:center">
+        <br />
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @placeholder = "Search" })
+        <button type="submit" class="btn btn-info glyphicon glyphicon-search btn-success"></button>
+
+    </p>
+}
+<table class="table" style="text-align:center">
+    <tr>
+        <th title="Sort by Name" , style="text-align:center">
+            @Html.ActionLink("Name", "NewIndex", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th title="Sort by Date" , style="text-align:center">
+            @Html.ActionLink("Date Of Purchase", "NewIndex", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+
+        <th title="Sort by Meal Supplier" , style="text-align:center">
+            @Html.ActionLink("Meal Supplier", "NewIndex", new { sortOrder = ViewBag.MealSuppierSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th title="Sort by Bag Size" , style="text-align:center">
+            @Html.ActionLink("Bag Size", "NewIndex", new { sortOrder = ViewBag.BagSizeSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateofPurchase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MealSupplier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BagSize)
+            </td>
+
+            <td>
+                <a class="btn btn-default glyphicon glyphicon-edit btn-success" onclick="EditMeal(@item.MealID)"></a>
+                <a class="btn btn-default glyphicon glyphicon-trash btn-danger" onclick="DeleteMealRecord(@item.MealID)"></a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("NewIndex",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+@*Popup Modal for add*@
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("AddMeal", new project.Models.mealproduct())
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*Popup Modal for edit*@
+<div class="modal fade" id="EditModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv1">
+                @Html.Partial("EditMeal", new project.Models.mealproduct())
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*Popup Modal for delete*@
+
+<div class="modal fade" id="DeleteConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 style="text-align:left" class="text-success"><img src="~/img/logomodal.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete Meal Record</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align:center">Are You Sure You Want To Delete This Record?</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-danger" data-dismiss="modal" id="r">Cancel</a>
+                <a href="#" class="btn btn-success" onclick="ConfirmDelete()">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var EditMeal = function (MealId) {
+
+        var url = "/Meal/GetEditMeal?MealID=" + MealId;
+
+        $("#myModalBodyDiv1").load(url, function () {
+
+            $("#EditModal").modal("show");
+
+        })
+
+    }
+
+    $(document).ready(function () {
+
+        $('#MyModal').on('shown.bs.modal', function () {
+            $('#myInput').focus()
+        })
+
+        $("#MyModal").on("submit", "#form-addmeal", function (e) {
+            e.preventDefault();  // prevent standard form submission
+
+            var form = $(this);
+            $.ajax({
+                url: form.attr("action"),
+                method: form.attr("method"),  // post
+                data: form.serialize(),
+                success: function (partialResult) {
+                    $("#formContent").html(partialResult);
+                    alert("Successfully added Meal record");
+                    $("#MyModal").modal("hide");
+                    window.location.reload();
+                }
+            });
+        });
+    });
+
+
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteMealRecord = function (MealId) {
+        $("#MealID").val(MealId);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var MealId = $("#MealID").val();
+        $.ajax({
+            type: "POST",
+            url: "/Meal/Delete?id=" + MealId,
+            success: function (result) {
+                $("#DeleteConfirmation").modal("hide");
+                $(".row_" + MealId).remove();
+                alert("Successfully deleted Meal record");
+                window.location.reload();
+            }
+        })
+    }
+
+</script>
