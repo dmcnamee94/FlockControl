@@ -686,6 +686,8 @@
     <Content Include="Views\Movement\AddMovement.cshtml" />
     <Content Include="Views\Movement\EditMovement.cshtml" />
     <Content Include="Views\Movement\_ViewStart.cshtml" />
+    <Content Include="Views\Sheep\NewEmployIndex.cshtml" />
+    <Content Include="Views\Sheep\AddNewSheep.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

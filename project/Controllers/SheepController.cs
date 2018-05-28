@@ -171,6 +171,78 @@ namespace project.Controllers
             return View(Sheep.ToPagedList(pageNumber, pageSize));
         }
 
+        [HttpGet]
+        public ActionResult NewEmployIndex(string sortOrder, string searchString, string currentFilter, int? page)
+        {
+            List<breed> BreedList = db.breed.ToList();
+            ViewBag.ListOfBreed = new SelectList(BreedList, "Breed1", "Breed1");
+            ViewBag.ListOfYear = new SelectList("2017", "2018", "2016", "2015");
+            createsheep sheepmodel = new createsheep();
+            sheepmodel.BreedCollection = db.breed.ToList<breed>();
+
+
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "breed" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.TagNoSortParm = String.IsNullOrEmpty(sortOrder) ? "TagNo" : "";
+            ViewBag.JoinYearSortParm = String.IsNullOrEmpty(sortOrder) ? "YearAdded" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+
+            List<sheep> model = (List<sheep>)repository.SelectAll();
+            var Sheep = from s in db.sheep
+                        select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                int TagNo;
+                if (int.TryParse(searchString, out TagNo))
+                {
+
+                    Sheep = Sheep.Where(s => s.sheeptag.Equals(TagNo) || s.yearadded.Equals(TagNo));
+                }
+                else
+                {
+                    Sheep = Sheep.Where(s => s.Breed.Contains(searchString) || (s.detail.Equals(searchString)) || (s.sex.Equals(searchString)));
+                }
+
+            }
+            switch (sortOrder)
+            {
+                case "breed":
+                    Sheep = Sheep.OrderByDescending(s => s.Breed);
+                    break;
+                case "Date":
+                    Sheep = Sheep.OrderBy(s => s.DOB);
+                    break;
+                case "date_desc":
+                    Sheep = Sheep.OrderByDescending(s => s.DOB);
+                    break;
+                case "TagNo":
+                    Sheep = Sheep.OrderByDescending(s => s.sheeptag);
+                    break;
+                case "YearAdded":
+                    Sheep = Sheep.OrderByDescending(s => s.yearadded);
+                    break;
+                default:
+                    Sheep = Sheep.OrderBy(s => s.sheeptag);
+                    break;
+            }
+
+
+            return View(Sheep.ToPagedList(pageNumber, pageSize));
+        }
         public JsonResult GetSheepById(int SheepId)
         {
             createsheep sheepmodel = new createsheep();
@@ -380,7 +452,38 @@ namespace project.Controllers
             //return PartialView("_AddSheep");
         }
 
+        //createfornewmodal
+        [HttpPost]
+        public ActionResult AddNewSheep(sheep obj)
+        {
+            if (ModelState.IsValid)
+            {
+                // check valid state
+                repository.Insert(obj);
+                repository.Save();
+                return RedirectToAction("NewEmployIndex");
+            }
 
+            else // not valid so redisplay
+            {
+                return View();
+                // return PartialView("_AddSheep");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult AddNewSheep()
+        {
+
+            createsheep sheepmodel = new createsheep();
+
+            //sheepmodel.BreedCollection = db.breed.ToList<breed>();
+            List<breed> BreedList = db.breed.ToList();
+            ViewBag.ListOfBreed = new SelectList(BreedList, "Breed1", "Breed1");
+
+            return View(sheepmodel);
+            //return PartialView("_AddSheep");
+        }
         [HttpGet, ActionName("EditSheep")]
         public ActionResult ConfirmSheepEdit(int id)
         {
@@ -405,6 +508,31 @@ namespace project.Controllers
                 return RedirectToAction("NewIndex");
             }
         }
+        [HttpGet, ActionName("EditEmploySheep")]
+        public ActionResult ConfirmSheepEmployEdit(int id)
+        {
+            sheep existing = repository.SelectByID(id);
+            List<breed> BreedList = db.breed.ToList();
+            ViewBag.ListOfBreed = new SelectList(BreedList, "Breed1", "Breed1");
+            return View(existing);
+        }
+
+        [HttpPost]
+        public ActionResult EditEmploySheep(sheep obj)
+        {
+            if (ModelState.IsValid)
+            { // check valid state
+                repository.Update(obj);
+                repository.Save();
+                return RedirectToAction("NewEmployIndex");
+            }
+            else // not valid so redisplay
+            {
+                //return View(obj);
+                return RedirectToAction("NewEmployIndex");
+            }
+        }
+
         [HttpGet]
         public ActionResult Create()
         {
